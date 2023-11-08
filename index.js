@@ -3,8 +3,7 @@ const admin = require("firebase-admin");
 const mysql = require("mysql");
 
 const app = express();
-const port =process.env.port || 3000;
-const BASE_URL=process.env.BASE_URL;
+const port = 3000;
 
 
 const serviceAccount = require("./thefooddfonee-firebase-adminsdk-dicqs-2580faac90.json");
@@ -53,5 +52,5 @@ app.get("/combined-data", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${BASE_URL}`);
+  console.log(`Server is running on port ${port}`);
 });
