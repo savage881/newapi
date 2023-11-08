@@ -3,7 +3,7 @@ const admin = require("firebase-admin");
 const mysql = require("mysql");
 
 const app = express();
-const port = 3000;
+const port =process.env.port || 3000;
 const BASE_URL=process.env.BASE_URL;
 
 
