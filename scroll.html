@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Watch Video</title>
+    <style>
+        body {
+            height: 1000px;
+        }
+        #container {
+            width:100%;
+            height: 100vh;
+            display:inline-flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        #container1{
+            transition:ease-in-out 0.3s;
+        }
+        #rotateMe {
+            width: 300px;
+            height: 300px;
+            background-color: #ffffff; 
+            border: 2px solid transparent;
+            background-image: url('png-clipart-sliced-tomatoes-and-cooked-meat-on-white-plate-breakfast-food-buffet-dish-dinner-breakfast-food-breakfast-removebg-preview.png');
+            box-shadow :10px;;
+            background-repeat: no-repeat;
+            background-size: cover;
+            text-align: center;
+            border-radius: 50px;
+            overflow: hidden;
+            transition: transform 0.5s ease-in-out;
+        }
+        #rotateMe2 {
+            width: 300px;
+            height: 300px;
+            background-color: #ffffff; 
+            border: none;
+            background-image: url('png-clipart-sliced-tomatoes-and-cooked-meat-on-white-plate-breakfast-food-buffet-dish-dinner-breakfast-food-breakfast-removebg-preview.png');
+            box-shadow :10px;;
+            background-repeat: no-repeat;
+            background-size: cover;
+            text-align: center;
+            border-radius: 50px;
+            overflow: hidden;
+            transition: transform 0.5s ease-in-out;
+        }
+       #container1:hover{
+        overflow: hidden;
+        transform: scale3d(1.2, 1.2, 0.3);
+       }
+        #rot {
+            margin-left:190px;
+            margin-bottom: 10px;
+            position: absolute;
+        }
+        .container5 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+.scroll-text {
+  opacity: 0;
+  position: relative;
+  right: 100%;
+  transition: opacity 0.5s, right 0.5s;
+}
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="container1">
+
+        <div id="rotateMe"></div>
+        </div>
+       
+       
+    </div>
+    <div id="container2">
+    <div id="container3">
+        <div id="rotateMe2">
+            <div class="container5">
+                <p class="scroll-text">Your text goes here</p>
+              </div>
+        </div>
+      </div>
+    </div>
+    <script>
+        function rotateElement() {
+            var rotation = window.pageYOffset / 3;
+            var element = document.getElementById("rotateMe");
+            element.style.transform = "rotate(" + rotation + "deg)";
+            requestAnimationFrame(rotateElement);
+        }
+        rotateElement();
+
+        const scrollText = document.querySelector('.scroll-text');
+
+function fadeInOnScroll() {
+  const scrollPosition = window.scrollY;
+  const windowHeight = window.innerHeight;
+  const elementPosition = scrollText.getBoundingClientRect().top;
+
+  if (elementPosition < windowHeight) {
+    const scrollPercentage = (windowHeight - elementPosition) / windowHeight;
+    const moveAmount = (100 - scrollPercentage * 100) + '%';
+
+    scrollText.style.opacity = 1;
+    scrollText.style.right = moveAmount;
+  } else {
+    scrollText.style.opacity = 0;
+    scrollText.style.right = '100%';
+  }
+}
+
+window.addEventListener('scroll', fadeInOnScroll);
+window.addEventListener('resize', fadeInOnScroll);
+
+// Trigger the animation on page load if the element is initially visible
+fadeInOnScroll();
+
+    </script>
+    
+</body>
+</html>

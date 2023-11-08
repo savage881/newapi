@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+   body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  height: 200vh; /* Adjust the height to your content's length */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll-text {
+  opacity: 0;
+  position: relative;
+  right: 100%;
+  transition: opacity 0.5s, right 0.5s;
+}
+
+      </style>
+</head>
+<body>
+    <div class="container">
+        <p class="scroll-text">Your text goes here</p>
+      </div>
+
+      <script>
+     const scrollText = document.querySelector('.scroll-text');
+
+function fadeInOnScroll() {
+  const scrollPosition = window.innerWidth;
+  const windowHeight = window.innerHeight;
+  const elementPosition = scrollText.getBoundingClientRect().top;
+
+  if (elementPosition < windowHeight) {
+    const scrollPercentage = (windowHeight - elementPosition) / windowHeight;
+    const moveAmount = (100 - scrollPercentage * 100) + '%';
+
+    scrollText.style.opacity = 1;
+    scrollText.style.right = moveAmount;
+  } else {
+    scrollText.style.opacity = 0;
+    scrollText.style.right = '100%';
+  }
+}
+
+window.addEventListener('scroll', fadeInOnScroll);
+window.addEventListener('resize', fadeInOnScroll);
+
+// Trigger the animation on page load if the element is initially visible
+fadeInOnScroll();
+
+        </script>
+</body>
+</html>
